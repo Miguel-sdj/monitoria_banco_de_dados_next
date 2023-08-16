@@ -80,3 +80,21 @@ update barcos
 set cor = 'amarelo'
 where nomeBarco = 'Marine';
 
+
+SELECT b.nomeBarco, b.cor FROM barcos b
+JOIN reservas r ON b.idBarcos = r.id_barco
+WHERE r.data_reserva >= '1998-08-01' AND r.data_reserva <= '1998-08-31';
+
+SELECT m.nomeMarinheiro, COUNT(r.id_marinheiro) AS num_reservas FROM marinheiro m
+LEFT JOIN reservas r ON m.idMarinheiro = r.id_marinheiro
+GROUP BY m.idMarinheiro, m.nomeMarinheiro;
+
+
+SELECT id_marinheiro, COUNT(*) AS num_reservas FROM reservas
+GROUP BY id_marinheiro;
+
+SELECT m.idMarinheiro, m.nomeMarinheiro, COUNT(*) AS num_reservas
+FROM marinheiro m
+JOIN reservas r ON m.idMarinheiro = r.id_marinheiro
+GROUP BY m.idMarinheiro, m.nomeMarinheiro;
+
